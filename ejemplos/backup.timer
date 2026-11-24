@@ -1,0 +1,10 @@
+# /etc/systemd/system/app-db-backup.timer — respaldo diario de PostgreSQL (ver scripts/backup-postgres.sh)
+[Unit]
+Description=Respaldo diario de la base
+
+[Timer]
+OnCalendar=*-*-* 04:00:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,8 @@
+# Caddy pide y renueva los certificados HTTPS solo.
+# Cada dominio de cliente apunta a la misma app; la app decide qué sitio mostrar según el host.
+ejemplo.com.ar, www.ejemplo.com.ar {
+    encode zstd gzip
+    reverse_proxy 127.0.0.1:3000 {
+        flush_interval -1
+    }
+}

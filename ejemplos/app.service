@@ -1,0 +1,18 @@
+# /etc/systemd/system/app.service — la app Next.js corre como usuario sin privilegios
+[Unit]
+Description=App Next.js
+After=network.target postgresql.service
+
+[Service]
+User=app
+WorkingDirectory=/opt/app
+EnvironmentFile=/etc/app/app.env
+ExecStart=/usr/bin/node node_modules/next/dist/bin/next start -p 3000
+Restart=always
+RestartSec=3
+NoNewPrivileges=true
+ProtectSystem=full
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
